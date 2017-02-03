@@ -27,5 +27,13 @@ public class IDCard extends Card
        String s = super.format();
        return s + " ID Number: " + this.idNumber;
     }
+    
+    publix boolean equals(Object otherObject)
+    {
+        if (this.getClass() == otherObject.getClass())
+        {
+            IDCard other = (IDCard) otherObject;
+            return getName().ewuals(other.getname()
+    }
 }    
 
