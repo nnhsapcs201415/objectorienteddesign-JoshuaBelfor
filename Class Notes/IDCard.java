@@ -16,24 +16,31 @@ public class IDCard extends Card
         super(n);
         this.idNumber = id;
     }
-    
-   /**
-    * 
-    * 
-    * @return   String  A string of the format layout of the card
-    */
-   public String format()
-   {
-       String s = super.format();
-       return s + " ID Number: " + this.idNumber;
+
+    /**
+     * 
+     * 
+     * @return   String  A string of the format layout of the card
+     */
+    public String format()
+    {
+        String s = super.format();
+        return s + " ID Number: " + this.idNumber;
     }
-    
-    publix boolean equals(Object otherObject)
+
+    public boolean equals(Object otherObject)
     {
         if (this.getClass() == otherObject.getClass())
         {
             IDCard other = (IDCard) otherObject;
-            return getName().ewuals(other.getname()
+            return getName().equals(other.getName());
+        }
+        if (otherObject instanceof IDCard)
+        {
+            IDCard other = (IDCard) otherObject;
+            return getName().equals(other.getName()) && idNumber.equals(other.idNumber);
+        }
+        return false;
     }
 }    
 
