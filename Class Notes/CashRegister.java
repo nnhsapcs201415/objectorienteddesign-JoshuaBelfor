@@ -47,7 +47,7 @@ public class CashRegister
         
         int count = (int)(( payment - purchase)/coinType.getValue());
         
-        payment -= count * countType.getValue();
+        payment -= count * coinType.getValue();
         
         if(payment == purchase)
         {
