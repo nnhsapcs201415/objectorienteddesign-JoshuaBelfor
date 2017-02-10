@@ -1,6 +1,9 @@
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
 /**
  * This class demonstrates how to install an action listener.
  * 
@@ -10,25 +13,56 @@ import javax.swing.JFrame;
 public class ButtonViewer
 {
     private static final int FRAME_WIDTH = 100;
-    private static final int FRAME_HEIGHT = 60;
+    private static final int FRAME_HEIGHT = 100;
     
-    public static void main(String[] args)
+    private JFrame frame;
+    private JPanel panel;
+    private JButton buttonA;
+    private JButton buttonB;
+    private JLabel label;
+    
+    public ButtonViewer()
     {
         //1. define and set up the UI compnents
-        JFrame frame = new JFrame();
-        JButton button = new JButton( "Click Me!" );
-        frame.add( button );
+        this.frame = new JFrame();
+        this.panel = new JPanel();
+        this.buttonA = new JButton( "A" );
+        this.panel.add( this.buttonA );
+        
+        this.buttonB = new JButton( "B" );
+        this.panel.add( this.buttonB );
+        
+        this.label = new JLabel( "No Button Clicked.");
+        //IMPORTANT, DO NOT FORGET LINE BELOW
+        this.frame.add(this.label);
+        this.frame.add( this.panel );
         
         //2. Create listener objects
-        ActionListener listener = new ClickListener();
+        ActionListener listener = new ActionListener()
+        {
+            public void actionPerformed( ActionEvent event ) 
+            {
+                 label.setText("Button " + event.getActionCommand() + " was clicked!");
+            }
+        };
+       
+        
+        ActionListener listener2 = new ClickListener();
         
         //3. Register listener object with component that generates events.
-        button.addActionListener( listener );
+        this.buttonA.addActionListener( listener );
+        this.buttonB.addActionListener( listener2 );
+        
         
         //4. configure the frame and show it
         
-        frame.setSize( FRAME_WIDTH, FRAME_HEIGHT);
-        frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
-        frame.setVisible( true );
+        this.frame.setSize( FRAME_WIDTH, FRAME_HEIGHT);
+        this.frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);
+        this.frame.setVisible( true );
+    }
+    
+    public static void main(String[] args)
+    {
+        ButtonViewer viewer = new ButtonViewer();
     }
 }
