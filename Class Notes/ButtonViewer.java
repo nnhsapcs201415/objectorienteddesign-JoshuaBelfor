@@ -12,8 +12,8 @@ import javax.swing.JLabel;
  */
 public class ButtonViewer
 {
-    private static final int FRAME_WIDTH = 100;
-    private static final int FRAME_HEIGHT = 100;
+    private static final int FRAME_WIDTH = 200;
+    private static final int FRAME_HEIGHT = 200;
     
     private JFrame frame;
     private JPanel panel;
@@ -47,11 +47,9 @@ public class ButtonViewer
         };
        
         
-        ActionListener listener2 = new ClickListener();
-        
         //3. Register listener object with component that generates events.
         this.buttonA.addActionListener( listener );
-        this.buttonB.addActionListener( listener2 );
+        this.buttonB.addActionListener( listener );
         
         
         //4. configure the frame and show it
