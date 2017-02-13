@@ -22,14 +22,16 @@ public class Person implements Comparable<Person>
     {
         this.name = name;
     }
-	public String toString()
-	{
-		return "Name: " + this.name;
-	}
-	public String getName()
-	{
-		return this.name;
-	}
+
+    public String toString()
+    {
+        return "Name: " + this.name;
+    }
+
+    public String getName()
+    {
+        return this.name;
+    }
 
     /**
      * An example of a method - replace this comment with your own
@@ -39,31 +41,39 @@ public class Person implements Comparable<Person>
      */
     public int compareTo( Person dude )
     {
-		if(this.name.compareTo(dude.getName()) < 0)
-		{
-			return -1;
-		}
-		else if (this.name.compareTo(dude.getName()) > 0)
-		{
-			return 1;
-		}
-		else
-		{
-			return 0;
-		}
+        return this.name.compareTo(dude.name);
+        /*if(this.name.compareTo(dude.getName()) < 0)
+        {
+        return -1;
+        }
+        else if (this.name.compareTo(dude.getName()) > 0)
+        {
+        return 1;
+        }
+        else
+        {
+        return 0;
+        }
+         */
     }
-	public static void testPerson()
-	{
-		ArrayList<Person> list = new ArrayList<Person>(10); 	
-		Scanner s = new Scanner(System.in);
-		String name;
-		for(int i = 0; i < 10; i++)
-		{
-			System.out.print("Please enter a Name: ");
-			name = s.next();
-			Person dude = new Person(name);
-			list.add(dude);
-		}
-	
-	}
+    public static Person firstPerson( Person [] list)
+    {
+        Person first = list[0];
+        return null; //FIX!
+    }
+    public static void testPerson()
+    {
+        ArrayList<Person> list = new ArrayList<Person>(10);     
+        Scanner s = new Scanner(System.in);
+        String name;
+        for(int i = 0; i < 10; i++)
+        {
+            System.out.print("Please enter a Name: ");
+            name = s.next();
+            Person dude = new Person(name);
+            list.add(dude);
+        }
+        //System.out.println("First: " + firstPerson(list));
+        //System.out.println("First: " + lastPerson(list));
+    }
 }
