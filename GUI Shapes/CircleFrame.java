@@ -1,6 +1,7 @@
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  */
@@ -12,11 +13,21 @@ public class CircleFrame extends JFrame
     private CircleComponent scene;
     public CircleFrame()
     {
-        scene = new CircleComponent();
+        String radiusString = JOptionPane.showInputDialog("Enter a Circle Radius: ");
+        int radius = Integer.parseInt(radiusString);
+        
+        String xPos = JOptionPane.showInputDialog("Enter the X coordinate of the Center: ");
+        int x = Integer.parseInt(xPos);
+        
+        String yPos = JOptionPane.showInputDialog("Enter the Y coordinate of the Center: ");
+        int y = Integer.parseInt(yPos);
+
+        /*scene = new CircleComponent();
         add(scene);
         MousePressListener listener = new MousePressListener();
         scene.addMouseListener(listener);
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
+         */
     }
     class MousePressListener implements MouseListener
     {
