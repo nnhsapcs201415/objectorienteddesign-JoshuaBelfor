@@ -86,4 +86,12 @@ public abstract class DrawingShape
      * @param   boolean     true or false depending on if the graphic is filled.
      */
     public abstract void draw(Graphics2D g2, boolean filled);
+    
+    /**
+     * 
+     * @param Point2D.Double    the location of the point to test
+     * 
+     * @return boolean     true or false depending on if the graphic is on the border.
+     */
+    public abstract boolean isOnBorder(Point2D.Double point);
 }

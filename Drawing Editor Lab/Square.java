@@ -1,5 +1,8 @@
-
-
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Point2D;
+import java.awt.Color;
+import java.awt.geom.Rectangle2D;
 /**
  * Write a description of class Square here.
  * 
@@ -8,16 +11,12 @@
  */
 public class Square extends DrawingShape
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
-
     /**
      * Default constructor for objects of class Square
      */
-    public Square()
+    public Square(Color c, Point2D.Double c2, double r)
     {
-        // initialise instance variables
-        x = 0;
+        super( c, c2 ,r);
     }
 
     /**
@@ -31,10 +30,50 @@ public class Square extends DrawingShape
      * @param    y    description of parameter y
      * @return    description of the return value
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x+y;
+    public void draw(Graphics2D g2, boolean filled)
+    {   rectangle2D = 
+        
     }
 
+    /**
+     * @param Point2D.Double    the location of the point to test
+     * 
+     * @return  boolean true or false depending upon wether or not the point is inside the borders
+     */
+    public boolean isInside(Point2D.Double point)
+    {
+        if(point.getX() > super.getCenter().getX() - this.getRadius() &&
+        point.getX() < super.getCenter().getX() + this.getRadius() &&
+        point.getY() > super.getCenter().getY() - this.getRadius() &&
+        point.getY() < super.getCenter().getY() + this.getRadius())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    /**
+     * 
+     * @param Point2D.Double    the location of the point to test
+     * 
+     * @return boolean     true or false depending on if the graphic is on the border.
+     */
+    public boolean isOnBorder(Point2D.Double point)
+    {
+        if(point.getX() == super.getCenter().getX() - this.getRadius() ||
+              point.getX() == super.getCenter().getX() + this.getRadius() &&
+              point.getY() >= super.getCenter().getY() - this.getRadius() &&
+              point.getY() <= super.getCenter().getY() + this.getRadius() )
+        {
+            return true;
+        }
+        
+        else
+        {
+            return false;
+        }
+    }
 }

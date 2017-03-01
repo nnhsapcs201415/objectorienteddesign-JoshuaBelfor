@@ -1,4 +1,7 @@
-
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Point2D;
+import java.awt.Color;
 
 /**
  * Write a description of class Circle here.
@@ -10,14 +13,13 @@ public class Circle extends DrawingShape
 {
     /** description of instance variable x (add comment for each instance variable) */
     private int x;
-
+    //drawCircle(50,50,20);
     /**
-     * Default constructor for objects of class Circle
+     * Default constructor for objects of class Square
      */
-    public Circle()
+    public Circle(Color c, Point2D.Double c2, double r)
     {
-        // initialise instance variables
-        x = 0;
+        super( c, c2 ,r);
     }
 
     /**
@@ -31,10 +33,28 @@ public class Circle extends DrawingShape
      * @param    y    description of parameter y
      * @return    description of the return value
      */
-    public int sampleMethod(int y)
+    public void draw(Graphics2D g2, boolean filled)
     {
-        // put your code here
-        return x+y;
+        
     }
 
+    /**
+     * @param Point2D.Double    the location of the point to test
+     * 
+     * @return  boolean true or false depending upon wether or not the point is inside the borders
+     */
+    public boolean isInside(Point2D.Double point)
+    {
+        if(point.getX() > super.getCenter().getX() - this.getRadius() &&
+        point.getX() < super.getCenter().getX() + this.getRadius() &&
+        point.getY() > super.getCenter().getY() - this.getRadius() &&
+        point.getY() < super.getCenter().getY() + this.getRadius())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

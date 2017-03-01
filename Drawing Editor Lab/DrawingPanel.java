@@ -1,7 +1,7 @@
 import javax.swing.JColorChooser;
 import javax.swing.JPanel;
 import java.awt.Color;
-
+import java.util.ArrayList;
 /**
  * The panel in which draws all of the shapes in the drawing editor
  * 
@@ -10,6 +10,7 @@ import java.awt.Color;
  */
 public class DrawingPanel extends JPanel
 {
+    private ArrayList<DrawingShape> objects;
     Color fillColor;
     
 
@@ -18,7 +19,7 @@ public class DrawingPanel extends JPanel
      */
     public DrawingPanel()
     {
-         
+     this.objects = new ArrayList<DrawingShape>();    
     }
     
     /**
