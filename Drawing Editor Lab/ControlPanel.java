@@ -46,15 +46,15 @@ public class ControlPanel extends JPanel
                 if (event.getSource() == circleB )
                 {
                  
-                    Circle circle = new Circle( g2, false );
+                    //Circle circle = new Circle( g2, false );
                     
                     canvas.add(circle);
                 
                 }
                 else if (event.getSource() == squareB )
                 {
-                    Graphics2D g2 = new Graphics2D();
-                    Circle square = new Circle( g2, false );
+                    //Graphics2D g2 = new Graphics2D();
+                    //Circle square = new Circle( g2, false );
                     
                     canvas.add(square);
            

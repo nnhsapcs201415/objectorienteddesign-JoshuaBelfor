@@ -2,6 +2,8 @@ import javax.swing.JColorChooser;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 /**
  * The panel in which draws all of the shapes in the drawing editor
  * 
@@ -36,6 +38,24 @@ public class DrawingPanel extends JPanel
         {
             this.fillColor = selectedColor;
         }
+    }
+    public void paintComponent(Graphics g)
+    {
+        for (DrawingShape shape: objects )
+        {
+            shape.draw( (Graphics2D) g, false);
+        }
+        repaint();
+    }
+    
+    public void addSquare()
+    {
+        
+    }
+    
+    public void addCircle()
+    {
+    
     }
 
     
