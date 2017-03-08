@@ -45,19 +45,11 @@ public class ControlPanel extends JPanel
             {
                 if (event.getSource() == circleB )
                 {
-                 
-                    //Circle circle = new Circle( g2, false );
-                    
-                    canvas.add(circle);
-                
+                    canvas.addCircle();
                 }
                 else if (event.getSource() == squareB )
                 {
-                    //Graphics2D g2 = new Graphics2D();
-                    //Circle square = new Circle( g2, false );
-                    
-                    canvas.add(square);
-           
+                    canvas.addSquare();
                 }
                 else
                 {
@@ -70,5 +62,15 @@ public class ControlPanel extends JPanel
             }
         };
     }
-
+    public void addCircle()
+    {
+        
+        
+    }
+    
+    public void addSquare()
+    {
+        Point2D.Double center = new Point2D.Double(200,200);
+        Square square = new Square(cColor, center, 20);
+    }
 }

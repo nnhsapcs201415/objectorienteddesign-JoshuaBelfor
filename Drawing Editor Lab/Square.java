@@ -26,7 +26,6 @@ public class Square extends DrawingShape
      */
     public void draw(Graphics2D g2, boolean filled)
     {   Rectangle2D.Double rectangle = new Rectangle2D( (int) super.getCenter().get);
-        
     }
 
     /**

@@ -48,14 +48,9 @@ public class DrawingPanel extends JPanel
         repaint();
     }
     
-    public void addSquare()
+    public Color getColor()
     {
-        
-    }
-    
-    public void addCircle()
-    {
-    
+        return this.fillColor;
     }
 
     
