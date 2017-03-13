@@ -1,9 +1,11 @@
 import javax.swing.JColorChooser;
 import javax.swing.JPanel;
+import java.awt.geom.Point2D;
 import java.awt.Color;
-import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+
 /**
  * The panel in which draws all of the shapes in the drawing editor
  * 
@@ -12,16 +14,47 @@ import java.awt.Graphics2D;
  */
 public class DrawingPanel extends JPanel
 {
-    private ArrayList<DrawingShape> objects;
     Color fillColor;
-    
+    private ArrayList<DrawingShape> objectList;
 
     /**
      * Default constructor for objects of class DrawingPanel
      */
     public DrawingPanel()
     {
-     this.objects = new ArrayList<DrawingShape>();    
+        fillColor = new Color( 255, 0, 0 );
+        this.objectList = new ArrayList<DrawingShape>();
+    }
+
+    public void addSquare()
+    {
+        Point2D.Double center = new Point2D.Double( 200, 200 );
+        Square square = new Square( center, 50, fillColor );
+        this.objectList.add( square );
+        repaint();
+    }
+
+    public void addCircle()
+    {
+        Point2D.Double center = new Point2D.Double( 150, 150 );
+        this.objectList.add( circle );
+        repaint();
+    }
+
+    public void paintComponent( Graphics g )
+    {
+        super.paintComponent( g );
+        for ( DrawingShape shape: objectList )
+        {
+            int i = 1;
+            if ( shape.compareTo( objectList.get( objectList.size() - i) ) )
+            {
+                shape.draw( (Graphics2D) g, false );
+            } else {
+                shape.draw( (Graphics2D) g, true );
+            }
+            i++;
+        }
     }
     
     /**
@@ -33,25 +66,18 @@ public class DrawingPanel extends JPanel
     public void pickColor()
     {
         Color selectedColor = JColorChooser.showDialog( this, "select the fill color", this.fillColor );
-        
+
         if( selectedColor != null )
         {
             this.fillColor = selectedColor;
         }
     }
-    public void paintComponent(Graphics g)
-    {
-        for (DrawingShape shape: objects )
-        {
-            shape.draw( (Graphics2D) g, false);
-        }
-        repaint();
-    }
-    
+
+    /**
+     * Returns the color of the fillColor
+     */
     public Color getColor()
     {
         return this.fillColor;
     }
-
-    
 }

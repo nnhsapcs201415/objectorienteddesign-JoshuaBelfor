@@ -1,94 +1,92 @@
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 
 /**
  * Write a description of class Circle here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author jebelfor
+ * @version 1
  */
 public class Circle extends DrawingShape
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
-    //drawCircle(50,50,20);
     /**
-     * Default constructor for objects of class Square
+     * Constructor for the Circle Class
      */
-    public Circle(Color c, Point2D.Double c2, double r)
+    public Circle( Point2D.Double ce, double r, Color c )
     {
-        super( c, c2 ,r);
+        super( ce, r, c );
     }
-
+    
     /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     *
-     * @pre        preconditions for the method
-     *            (what the method assumes about the method's parameters and class's state)
-     * @post    postconditions for the method
-     *            (what the method guarantees upon completion)
-     * @param    y    description of parameter y
-     * @return    description of the return value
-     */
-    public void draw(Graphics2D g2, boolean filled)
-    {
-        Ellipse2D.Double circle = new Ellipse2D.Double( 
-            super.getCenter().getX() - super.getRadius(), super.getCenter().getY() - super.getRadius(),
-                super.getRadius(), super.getRadius());
-        if (filled == true)
-        {
-            g2.fill(circle);
-        }
-        else
-        {
-            g2.draw(circle);
-        }
-    }
-
-    /**
-     * @param Point2D.Double    the location of the point to test
+     * This method will reutnr true if the point is within the shape
      * 
-     * @return  boolean true or false depending upon wether or not the point is inside the borders
+     * @param point the point to check
      */
-    public boolean isInside(Point2D.Double point)
+    public boolean isInside( Point2D.Double point )
     {
-        double pointP = Math.sqrt( Math.pow( Math.abs( super.getCenter().getX() - point.getX()), 2
-            )+ (Math.pow( Math.abs( super.getCenter().getY() - point.getY()), 2
-            )));
-        if(point.getX() > pointP)
+        double pointH = Math.sqrt( (Math.pow( Math.abs( super.getCenter().getX()
+                - point.getX() ), 2 )) + (Math.pow( Math.abs( super.getCenter().
+                getY() - point.getY() ), 2 )));
+                
+        if ( super.getRadius() > pointH )
         {
             return true;
+        } else {
+            return false;
         }
-        else
+    }
+
+    /**
+     * This method will return true if the point is on the border of the circle
+     * 
+     * @param point the point to check
+     */
+    public boolean isOnBorder( Point2D.Double point )
+    {
+        double pointH = Math.sqrt( (Math.pow( Math.abs( super.getCenter().getX()
+                - point.getX() ), 2 )) + (Math.pow( Math.abs( super.getCenter().
+                getY() - point.getY() ), 2 )));
+                
+        if (super.getRadius() == pointH )
         {
+            return true;
+        } else {
             return false;
         }
     }
     
     /**
-     * 
-     * @param Point2D.Double    the location of the point to test
-     * 
-     * @return boolean     true or false depending on if the graphic is on the border.
+     * Draws the shape. Draws a filled shape if filled is true, and
+     *      a hollow shape otherwise
      */
-    public boolean isOnBorder(Point2D.Double point)
+    public void draw( Graphics2D g2, boolean filled )
     {
-        if(point.getX() == super.getCenter().getX() - this.getRadius() ||
-              point.getX() == super.getCenter().getX() + this.getRadius() &&
-              point.getY() >= super.getCenter().getY() - this.getRadius() &&
-              point.getY() <= super.getCenter().getY() + this.getRadius() )
+        g2.setColor( super.getColor() );
+        Ellipse2D circle = new Ellipse2D.Double( 
+                           super.getCenter().getX() - super.getRadius(),
+                           super.getCenter().getY() - super.getRadius(),
+                           super.getRadius(), super.getRadius() );
+                           
+        if ( filled == true )
         {
-            return true;
-        }
-        
-        else
-        {
-            return false;
+            g2.fill( circle );
+        } else {
+            g2.draw( circle );
         }
     }
-}    
+}
+
+
+
+
+
+
+
+
+
 

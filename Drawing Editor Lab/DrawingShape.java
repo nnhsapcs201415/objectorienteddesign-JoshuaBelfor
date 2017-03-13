@@ -1,40 +1,24 @@
-
 import java.awt.geom.Point2D;
 import java.awt.Color;
 import java.awt.Graphics2D;
-/**
- * Write a description of abstract class DrawingShape here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public abstract class DrawingShape
 {
     private Point2D.Double center;
     private double radius;
     private Color color;
     
-    public DrawingShape(Color c, Point2D.Double c2, double r)
+    /**
+     * Constructor of the class
+     */
+    public DrawingShape( Point2D.Double ce, double r, Color c )
     {
-        this.center = c2;
+        this.center = ce;
         this.radius = r;
         this.color = c;
     }
-    
+
     /**
-     * returns the radius of the object
-     * 
-     *  @return  returns The Radius
-     */
-    public double getRadius()
-    {
-        return this.radius;
-    }
-    
-    /**
-     * Returns the pixel location of the center
-     * 
-     * @return   the objects center
+     * Returns the center of the shape
      */
     public Point2D.Double getCenter()
     {
@@ -42,10 +26,15 @@ public abstract class DrawingShape
     }
     
     /**
-     * returns the color of the object
-     * 
-     * @return      the color of the object
-     * 
+     * Returns the radius of the object
+     */
+    public double getRadius()
+    {
+        return this.radius;
+    }
+    
+    /**
+     * Returns the color of the object
      */
     public Color getColor()
     {
@@ -53,45 +42,78 @@ public abstract class DrawingShape
     }
     
     /**
-     * Moves the object around the Graphical User Interface
+     * Moves the shape by (x, y)
      * 
-     * @param  double      the x location where the object will move to
-     * @param  double      the y location where the object will move to
+     * @param x the x-position
+     * @param y the y-position
      */
-    public void move(double x, double y)
+    public void move( double x, double y )
     {
-        this.center.setLocation(x,y);
+        this.center.setLocation( x, y );
     }
-
+    
     /**
-     * sets a radius for the new object
+     * Sets the radius of the instance variable
      * 
-     * @param  double      the new size of the radius
-
+     * @param r the new radius of the object
      */
-    public void setRadius(double r)
+    public void setRadius( double r )
     {
         this.radius = r;
     }
     
     /**
-     * @param Point2D.Double    the location of the point to test
-     * 
-     * @return  boolean true or false depending upon wether or not the point is inside the borders
+     * Returns true if the two shapes are equal to each other
      */
-    public abstract boolean isInside(Point2D.Double point);
+    public boolean compareTo( DrawingShape shape )
+    {
+        if ( this.center == shape.getCenter() &&
+             this.radius == shape.getRadius() &&
+             this.color == shape.getColor() )
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     /**
-     * @param   Graphics2D  a graphical object
-     * @param   boolean     true or false depending on if the graphic is filled.
+     * Returns true if the point lies inside this shape, false otherwise
+     * 
+     * @param point checks to see if the point is within the object
      */
-    public abstract void draw(Graphics2D g2, boolean filled);
+    public abstract boolean isInside( Point2D.Double point );
     
     /**
-     * 
-     * @param Point2D.Double    the location of the point to test
-     * 
-     * @return boolean     true or false depending on if the graphic is on the border.
+     * Returns true if the point liesapproximately on the border 
+     *      of this shape, false otherwise
+     *      
+     * @param point the point to check and see if it on the border
      */
-    public abstract boolean isOnBorder(Point2D.Double point);
+    public abstract boolean isOnBorder( Point2D.Double point );
+    
+    /**
+     * Draws this shape. Draws a filled shape if filled is true, 
+     *      and a hollow shape otherwise
+     *      
+     * @param g2 the graphics object
+     * @param filled false, then will draw a filled shape
+     */
+    public abstract void draw( Graphics2D g2, boolean filled );
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,72 +1,79 @@
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
-import java.awt.Color;
 import java.awt.geom.Rectangle2D;
-/**
- * Write a description of class Square here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 public class Square extends DrawingShape
 {
     /**
-     * Default constructor for objects of class Square
+     * Constructor of the square class
      */
-    public Square(Color c, Point2D.Double c2, double r)
+    public Square( Point2D.Double ce, double r, Color c )
     {
-        super( c, c2 ,r);
+        super( ce, r, c );
     }
-
+    
     /**
-     * An example of a method - replace this comment with your own
-     *    that describes the operation of the method
-     * @param    y    description of parameter y
-     */
-    public void draw(Graphics2D g2, boolean filled)
-    {   Rectangle2D.Double rectangle = new Rectangle2D( (int) super.getCenter().get);
-    }
-
-    /**
-     * @param Point2D.Double    the location of the point to test
+     * This method will return true if the point is within the shape
      * 
-     * @return  boolean true or false depending upon wether or not the point is inside the borders
+     * @param point The point to check if it in the object
      */
-    public boolean isInside(Point2D.Double point)
+    public boolean isInside( Point2D.Double point )
     {
-        if(point.getX() > super.getCenter().getX() - this.getRadius() &&
-        point.getX() < super.getCenter().getX() + this.getRadius() &&
-        point.getY() > super.getCenter().getY() - this.getRadius() &&
-        point.getY() < super.getCenter().getY() + this.getRadius())
+        if ( point.getX() > super.getCenter().getX() - this.getRadius() &&
+               point.getX() < super.getCenter().getX() + this.getRadius() &&
+               point.getY() > super.getCenter().getY() - this.getRadius() &&
+               point.getY() < super.getCenter().getY() + this.getRadius() )
         {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
     
     /**
-     * 
-     * @param Point2D.Double    the location of the point to test
-     * 
-     * @return boolean     true or false depending on if the graphic is on the border.
+     * Returns true if the point is on the boarder of the object
      */
-    public boolean isOnBorder(Point2D.Double point)
+    public boolean isOnBorder( Point2D.Double point )
     {
-        if(point.getX() == super.getCenter().getX() - this.getRadius() ||
-              point.getX() == super.getCenter().getX() + this.getRadius() &&
-              point.getY() >= super.getCenter().getY() - this.getRadius() &&
-              point.getY() <= super.getCenter().getY() + this.getRadius() )
+        if (point.getX() == super.getCenter().getX() - this.getRadius() ||
+               point.getX() == super.getCenter().getX() + this.getRadius() &&
+               point.getY() >= super.getCenter().getY() - this.getRadius() &&
+               point.getY() <= super.getCenter().getY() + this.getRadius() )
         {
             return true;
-        }
-        
-        else
-        {
+        } else {
             return false;
         }
     }
+    
+    /**
+     * Draws the shape. Draws a filled shpae if filled is true, and
+     *      a hollow shape otherwise
+     */
+    public void draw( Graphics2D g2, boolean filled )
+    {
+        g2.setColor( super.getColor() );
+        Rectangle2D.Double rect = new Rectangle2D.Double( (int) super.getCenter().getX() 
+                - this.getRadius(), (int) super.getCenter().getY() - this.getRadius(),
+                150, 150 );
+        
+        if ( filled == true )
+        {
+            g2.fill( rect );
+        } else {
+            g2.draw( rect );
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
